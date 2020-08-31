@@ -1,0 +1,14 @@
+.edit__inputsWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .inputWrapper {
+    width: 40%;
+  }
+  
+  .plainInput__wrapper {
+    width: 100%;
+  }
+  

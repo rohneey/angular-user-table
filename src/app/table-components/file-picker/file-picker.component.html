@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Choose CSV file</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <input type="file" style="display: none" #fileInput onclick="this.value = null" (change)="onChangeFileInput()"
+             accept=".csv"/>
+      <button mat-raised-button mat-button color="primary" class="file-select-button" (click)="onClickFileInputButton()">
+        Choose
+      </button>
+    </mat-card-actions>
+</mat-card>

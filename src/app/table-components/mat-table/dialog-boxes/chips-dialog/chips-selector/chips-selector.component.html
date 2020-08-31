@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Choose columns to chipsify</h1>
+
+<mat-selection-list #headerList>
+  <mat-list-option *ngFor="let header of headers">
+    {{header}}
+  </mat-list-option>
+</mat-selection-list>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close (click)="chipsify()">Choose</button>
+</div>

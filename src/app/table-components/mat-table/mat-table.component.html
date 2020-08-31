@@ -1,0 +1,35 @@
+<!--<app-header></app-header>-->
+<ng-container *ngIf="showTable">
+  <mat-table #table cdkDropList [dataSource]="dataSource" (cdkDropListDropped)="drop($event)" class="example-list">
+    <ng-container *ngFor="let header of headers" cdkColumnDef="{{header}}">
+      <ng-container *ngIf="this.headersToTransform.includes(header); else plainOrAction">
+        <mat-header-cell *cdkHeaderCellDef> {{header}} </mat-header-cell>
+        <mat-cell style="justify-content: space-between;" *cdkCellDef="let value">
+          <app-chips [chips]="value[this.getAliasByHeader(header)]" [removable]="false" [mutable]="false"></app-chips>
+        </mat-cell>
+      </ng-container>
+      <ng-template #plainOrAction>
+        <ng-container *ngIf="header === 'Actions'; else plainText">
+          <mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *cdkCellDef="let element">
+            <mat-icon style="cursor: pointer" (click)="editRow(element)">edit</mat-icon>
+            <mat-icon style="cursor: pointer" (click)="deleteRow(element)">delete</mat-icon>
+          </mat-cell>
+        </ng-container>
+        <ng-template #plainText>
+          <mat-header-cell *cdkHeaderCellDef> {{header}} </mat-header-cell>
+          <mat-cell style="margin: 0 auto" *cdkCellDef="let value">
+            {{value[this.getAliasByHeader(header)]}}
+          </mat-cell>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="headers"></mat-header-row>
+    <mat-row *cdkRowDef="let value; columns: headers" cdkDrag class="example-box"></mat-row>
+  </mat-table>
+</ng-container>
+<!--<mat-paginator [pageSizeOptions]="[5, 10, 15]" [style.visibility]="!showTable ? 'hidden': 'visible'"
+               showFirstLastButtons class="paginator"></mat-paginator>-->
+
+<mat-spinner class="mat-progress-spinner spinner-class" *ngIf="loading"></mat-spinner>

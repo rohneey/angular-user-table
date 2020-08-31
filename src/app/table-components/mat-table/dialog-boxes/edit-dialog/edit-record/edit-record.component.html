@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Change information</h1>
+<div class="edit__inputsWrapper">
+  <ng-container mat-dialog-content *ngFor="let header of headers">
+    <p class="inputWrapper">
+      <ng-container *ngIf="this.headersToTransform.includes(header); else plainInput">
+        <app-chips [chips]="value[this.getAliasByHeader(header)]" [removable]="true" [mutable]="true"
+                   [customPlaceholder]="header"></app-chips>
+      </ng-container>
+      <ng-template #plainInput>
+        <mat-form-field class="plainInput__wrapper" appearance="standard">
+          <mat-label>{{header}}</mat-label>
+          <input matInput style="width: 100%;" [(ngModel)]="value[this.getAliasByHeader(header)]">
+        </mat-form-field>
+      </ng-template>
+    </p>
+  </ng-container>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>
+
